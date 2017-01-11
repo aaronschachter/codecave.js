@@ -4,6 +4,7 @@
  * Remove spaces and return as lowercase.
  */
 function sanitize(input) {
+  // TODO: Strip out punctuation marks if desired (e.g. 'A Man, A Plan', "Mr. Mojo Risin'")
   return input.replace(/ /g, '').toLowerCase();
 }
 
@@ -66,4 +67,4 @@ function isAnagram(firstString, secondString) {
 isAnagram('jerryst', 'jeryrst');
 isAnagram('Clint Eastwood', 'Old West Action');
 isAnagram('Clintt Eastwood', 'Old West Actions');
-
+isAnagram('Mr Mojo Risin', 'Jim Morrison');
