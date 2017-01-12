@@ -51,22 +51,24 @@ P L H D
 
 
 */
-const orig = [['A','B','C'], ['D', 'E', 'F'], ['G', 'H', 'I']];
-console.log(orig);
 
+// Rotates 90 degrees with additonal storage.
 function rotateMatrix(orig) {
   const length = orig.length;
   const rotated = [];
+
   for (let i = 0; i < length; i++) {
-    const row = orig[i];
     rotated[i] = [];
     for (let j = 0; j < length; j++) {
       const y = Math.abs(length - j - 1);
-      console.log(`y=${y}`);
       rotated[i][j] = orig[y][i];
     }
   }
   console.log(rotated);
 }
 
-rotateMatrix(orig);
+const three = [['A','B','C'], ['D', 'E', 'F'], ['G', 'H', 'I']];
+rotateMatrix(three);
+
+const four = [['A', 'B', 'C', 'D'], ['E', 'F', 'G', 'H'], ['I', 'J', 'K', 'L'], ['M', 'N', 'O', 'P']];
+rotateMatrix(four);
