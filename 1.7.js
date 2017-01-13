@@ -24,13 +24,10 @@ function zeroMe(matrix) {
   for (let i = 0; i < matrix.length; i++) {
     // Loop through columns of each row:
     for (let j = 0; j < matrix[i].length; j++) {
-      console.log(matrix[i][j]);
 
       if (matrix[i][j] === 0) {
         zeroRows[i] = true;
         zeroCols[j] = true;
-        // We're setting the whole row to 0 later, so no need to keep checking.
-        continue;
       }
 
     }
