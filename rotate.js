@@ -38,3 +38,14 @@ function rotate(array, d) {
 
  const array = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
  rotateConstant(array, 2);
+
+ /**
+  * The sweet answer without extra storage / in place: 
+  * http://articles.leetcode.com/rotating-array-in-place/
+  * Reverse the array 3 times: first time is the entire array
+  * g f e d c b a
+  * Next reverse 0 to k-1 (let's use k = 4)
+  * e f g d c b a
+  * Next k to n-1
+  * e f g a b c d
+  */
