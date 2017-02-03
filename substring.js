@@ -25,7 +25,7 @@ const lengthOfLongestSubstring = function(s) {
 
     const charMap = { };
     const currentChar = chars[i];
-    charMap[currentChar] = true;
+    charMap[currentChar] = i;
     let currentCount = 1;
     for (let j = i + 1; j < s.length; j++) {
       const nextChar = chars[j];
@@ -37,7 +37,8 @@ const lengthOfLongestSubstring = function(s) {
 
         break;
       } else {
-        charMap[nextChar] = true;
+        charMap[nextChar] = j - 1;
+        i = j;
         currentCount++;
         if (j == s.length - 1 && currentCount > result) {
           result = currentCount;
