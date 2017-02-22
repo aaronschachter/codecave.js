@@ -49,3 +49,29 @@ function rotate(array, d) {
   * Next k to n-1
   * e f g a b c d
   */
+
+function reverse(inputArray) {
+  for (let i = 0; i < inputArray.length / 2; i++) {
+    const tail = inputArray.length - i - 1;
+    const temp = inputArray[i];
+    inputArray[i] = inputArray[tail];
+    inputArray[tail] = temp;
+  }
+
+  return inputArray;
+}
+
+function rotate(inputArray, numRotations) {
+  inputArray = reverse(inputArray);
+  const pivot = inputArray.length - numRotations;
+  const left = inputArray.slice(0, pivot);
+  const right = inputArray.slice(pivot, inputArray.length);
+
+  return reverse(left).concat(reverse(right));
+}
+
+
+const values = [1, 2, 3, 4, 5];
+const result = rotate(values, 4);
+console.log(result);
+console.log(result.join(' '));
