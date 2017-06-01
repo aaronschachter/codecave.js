@@ -1,3 +1,7 @@
+/**
+ * First pass at linked list addition. Not ideal - loops through each list when we could cut that 
+ * in half by comparing + adding each element per step in the iteration.
+ */
 function listToNumber(list) {
   let result = 0;
   let current = list.head;
