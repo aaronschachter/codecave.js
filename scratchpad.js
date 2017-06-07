@@ -1,83 +1,60 @@
-function listToNumber(list) {
-  let result = 0;
-  let current = list.head;
-  let numTens = 0;
+/*
+You are given an array of n integers and a number k. Determine whether there is a pair
+of elements in the array that sums to exactly k. For example, given the array [1, 3, 7] and
+k = 8, the answer is “yes,” but given k = 6 the answer is “no.”
+*/
+// Coursera version: return the pairs that add up to the number.
 
-  while (current) {
-    console.log(`current=${current.data} numTens:${numTens}`);
-    const increment = current.data * Math.pow(10, numTens);
-    console.log(`increment=${increment}`);
-    result = result + increment;
-    current = current.next;
-    numTens++;
-  }
-  return result;
-}
-
-/**
- * @param {number} - Number to render as a LinkedList
- * @return {LinkedList}
- */
-function numberToList(number) {
-  let result = [];
-  let scope = number;
-
-  while (scope > 0) {
-    result.push(scope % 10);
-    scope = Math.floor(scope / 10);
-  }
-  return new LinkedList(result);
-}
-
-class LinkedListNode {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
+function debug(input) {
+  if (false) {
+    console.log(input);
   }
 }
 
-class LinkedList {
-  constructor(array) {
-    let current;
-    for (let i = 0; i < array.length; i++) {
-      const node = new LinkedListNode(array[i]);
-      if (i == 0) {
-        this.head = node;
-        current = this.head;
-      } else {
-        current.next = node;
-        current = current.next;
+function twoSumExists(input, k) {
+  const map = {};
+
+  for (let i = 0; i < input.length; i++) {
+    const current = input[i];
+    debug(`current:${current}`);
+
+    if (!map[current]) {
+      map[current] = 1;
+    } else {
+      map[current]++;
+    }
+
+    if (current === k / 2) {
+      if (map[current] > 1) {
+        return true;
       }
+    } else {
+      const diff = k - current;
+      debug(`diff:${diff}`);
+     
+      if (map[current] && map[diff]) {
+        return true;
+      } 
     }
+
   }
-  /**
-   * Print all elements in the array.
-   */
-  print() {
-    const output = [];
-    let current = this.head;
-    while (current) {
-      output.push(current.data);
-      current = current.next;
-    }
-    console.log(output.join(' -> '));
-  }
+  return false;
 }
 
-let list = new LinkedList([1, 3, 5, 6, 2, 2, 3, 4, 29, 2]);
-// list.print();
+const array = [1, 3, 7];
+twoSumExists(array, 8) ? console.log('yes') : console.log('no');
+twoSumExists(array, 6) ? console.log('yes') : console.log('no');
 
-// list = new LinkedList([3, 9, 3]);
-// console.log(listToNumber(list)); 
+function twoSumIndices(input, k) {
+  const map = {};
+  for (let i = 0; i < input.length; i++) {
+    const current = input[i];
+    if (!map[current]) {
+      map[current] = {
+        index: i,
+        count: 1,
+      };
+    }
 
-// list = numberToList(7620);
-// list.print();
-
-const list1 = new LinkedList([3, 1, 5]);
-const sum1 = listToNumber(list1);
-const list2 = new LinkedList([5, 9, 2]);
-const sum = listToNumber(list1) + listToNumber(list2);
-console.log(`sum=${sum}`);
-const result = numberToList(sum);
-result.print();
-
+  }
+}
