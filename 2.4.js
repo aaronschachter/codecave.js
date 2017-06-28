@@ -38,6 +38,15 @@ class LinkedListNode {
     this.data = data;
     this.next = null;
   }
+  print() {
+    const output = [];
+    let current = this;
+    while (current) {
+      output.push(current.data);
+      current = current.next;
+    }
+    console.log(output.join(' -> '));
+  }
 }
 
 class LinkedList {
@@ -57,15 +66,7 @@ class LinkedList {
   /**
    * Print all elements in the array.
    */
-  print() {
-    const output = [];
-    let current = this.head;
-    while (current) {
-      output.push(current.data);
-      current = current.next;
-    }
-    console.log(output.join(' -> '));
-  }
+
 }
 
 let list = new LinkedList([1, 3, 5, 6, 2, 2, 3, 4, 29, 2]);
@@ -80,8 +81,42 @@ let list = new LinkedList([1, 3, 5, 6, 2, 2, 3, 4, 29, 2]);
 const list1 = new LinkedList([3, 1, 5]);
 const sum1 = listToNumber(list1);
 const list2 = new LinkedList([5, 9, 2]);
+/*
 const sum = listToNumber(list1) + listToNumber(list2);
 console.log(`sum=${sum}`);
 const result = numberToList(sum);
 result.print();
+*/
 
+// Recursive solution
+function addLists(list1, list2) {
+  return addNodes(list1.head, list2.head);
+}
+
+function addNodes(node1, node2, carry) {
+  if (!node1 && !node2 && !carry) {
+    return null;
+  }
+  if (!node1) {
+    node1 = { data: 0 };
+  }
+  if (!node2) {
+    node2 = { data: 0 };
+  }
+  let sum = node1.data + node2.data
+  if (carry) {
+    sum = sum + carry;
+  }
+  
+  console.log(`sum:${sum}`);
+  const resultNode = new LinkedListNode(sum % 10);
+  let resultCarry = 0;
+  if (sum > 9) {
+    resultCarry = 1;
+  }
+  resultNode.next = addNodes(node1.next, node2.next, resultCarry);
+  return resultNode;
+}
+
+const result = addLists(list1, list2);
+result.print();
